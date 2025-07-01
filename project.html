@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="project.css">
+    <title>Document</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+    </style>
+</head>
+<body class="nunito">
+    
+    <header>
+        <img class="img-size" src="https://raw.githubusercontent.com/nadezhda-alesenko/firstattempt/refs/heads/main/hamburger-blue-illustration.avif">
+        <h2>What should You eat today?</h2>
+    </header>
+  
+    <main>
+      <div class="margin10">
+      <div class="btn-space">
+        <button id="story-btn" class="story-btn"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh6XGT5Hz9MpAiyfTHlBczavuUjyTBza9zWdzYmoifglj0p1lsylcTEScnpSa-Youh7YXw-ssgO-mMQmw-DBz4NeesioQPTe8beOH_QS-A4JMnfZAGP-01gxPQrS-pPEnrnJxbdVnWguhCC/s1600/pose_pien_uruuru_woman.png"></button>
+      </div>
+
+      <div id="storyModal" class="modal hidden">
+        <div class="modal-content">
+          <img id="storyImage" src="" alt="story" style="max-width: 100%; margin-bottom: 1rem;">
+          <p id="storyText"></p>
+          <button id="nextStoryBtn" class="btn btn-outline-secondary mb-3">next</button>
+        </div>
+      </div>
+
+      <h2 class="text-center mb-4">Let me help you to decide!</h2>
+
+      <h2 class="text-center mb-4">I want to eat...</h2>
+      <div class="d-flex flex-wrap gap-2 justify-content-center mb-4">
+        <a class="btn btn-primary" href="#calories-anchor">Dish by calories</a>
+        <a class="btn btn-primary" href="#vitamins-anchor">Dish by vitamins</a>
+        <a class="btn btn-primary" href="#preference-anchor">Dish by preference</a>
+      </div>
+      </div>
+      
+  
+      <div class="mb-5">
+        
+        <form id="formCalcCalories" class="p-4 border rounded bg-light mb-5">
+        <h4 id="calories-anchor">Calculate your perfect calories consumption</h4>
+        <p>BMR - Basal Metabolic Rate</p>
+
+
+          <p>Sex:</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" value="male" name="radioSex" id="radioMaleCalories">
+            <label class="form-check-label" for="radioMaleCalories">Male</label>
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="radio" value="female" name="radioSex" id="radioFemaleCalories" checked>
+            <label class="form-check-label" for="radioFemaleCalories">Female</label>
+          </div>
+  
+          <label class="form-label mt-2">Weight:</label>
+          <input class="form-control" type="text" placeholder="weight in kg" id="weight">
+  
+          <label class="form-label mt-2">Height:</label>
+          <input class="form-control" type="text" placeholder="height in cm" id="height">
+  
+          <label class="form-label mt-2">Age:</label>
+          <input class="form-control" type="text" placeholder="age in years" id="age">
+  
+          <label class="form-label mt-2">Activity during the week:</label>
+          <select class="form-select" id="activityForm">
+            <option value="noActivity">Minimum activity (without sports)</option>
+            <option value="lowActivity">Light activity (sports 1-3 times a week)</option>
+            <option value="normalActivity">Moderate activity (sports 3-5 times a week)</option>
+            <option value="highActivity">High activity (sports 6 times a week)</option>
+            <option value="everydayActivity">Very high activity (sports every day)</option>
+          </select>
+  
+          <p class="mt-3">Your goal:</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="goal" id="mantaining" value="mantaining" checked>
+            <label class="form-check-label" for="mantaining">Weight maintenance</label>
+          </div>
+  
+          <div class="input-group my-2">
+            <div class="input-group-text">
+              <input class="form-check-input mt-0" type="radio" name="goal" value="losingWeight">
+              <span class="ms-2">Weight loss</span>
+            </div>
+            <input type="text" class="form-control" placeholder="deficit ratio">
+          </div>
+  
+          <div class="input-group mb-3">
+            <div class="input-group-text">
+              <input class="form-check-input mt-0" type="radio" name="goal" value="gainingWeight">
+              <span class="ms-2">Weight gain</span>
+            </div>
+            <input type="text" class="form-control" placeholder="surplus rate">
+          </div>
+  
+          <button type="submit" class="btn btn-primary w-100">Count your calories</button>
+        </form>
+        <div id="resultOutputCalories">
+          <div id="calorieSummary" class="text-style"></div>
+          <div id="calorieMeals"></div>
+        </div>
+      </div>
+  
+      <div>
+
+        <form id="formCalcVitamins" class="p-4 border rounded bg-light mb-5">
+        <h4 id="vitamins-anchor">Calculate how much vitamins your body needs</h4>
+        <p class="text-muted">Vitamins are organic compounds that the body needs in small amounts to function properly.</p>
+
+          <p>Sex:</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" value="male" name="radioSex" id="radioMaleVitamins">
+            <label class="form-check-label" for="radioMaleVitamins">Male</label>
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="radio" value="female" name="radioSex" id="radioFemaleVitamins" checked>
+            <label class="form-check-label" for="radioFemaleVitamins">Female</label>
+          </div>
+  
+          <p>Age group:</p>
+          <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-2">
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" value="0-3" name="radioAge" id="age0-3">
+                <label class="form-check-label" for="age0-3">0–3</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" value="4-8" name="radioAge" id="age4-8">
+                <label class="form-check-label" for="age4-8">4–8</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" value="9-13" name="radioAge" id="age9-13">
+                <label class="form-check-label" for="age9-13">9–13</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" value="14-18" name="radioAge" id="age14-18">
+                <label class="form-check-label" for="age14-18">14–18</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" value="19-30" name="radioAge" id="age19-30">
+                <label class="form-check-label" for="age19-30">19–30</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" value="31-50" name="radioAge" id="age31-50">
+                <label class="form-check-label" for="age31-50">31–50</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" value="51+" name="radioAge" id="age51+">
+                <label class="form-check-label" for="age51+">51+</label>
+            </div>
+           </div>
+        </div>
+  
+          <button type="submit" class="btn btn-primary w-100 margin10">Count your vitamins</button>
+        </form>
+  
+        <div id="resultOutputVitamins" class="mt-4 output-hidden output-style">
+          <canvas id="vitaminChart" width="400" height="400"></canvas>
+          <div id="vitaminTextOutput">
+            <table class=" mt-4 vitamin-table" >
+              <thead class="table-light">
+                <tr>
+                  <th>Vitamin</th>
+                  <th>Standard amount</th>
+                  <th>Find a dish</th>
+                </tr>
+              </thead>
+              <tbody id="vitaminTableBody"></tbody>
+            </table>
+            <button id="findMultiVitaminDish" class="vitamin-dish-btn btn btn-outline-secondary mb-3">Find dish for selected vitamins</button>
+            <div id="vitaminTableDish"></div>
+          </div>
+        </div>
+      </div>
+
+      <form id="dishFilterForm" class="p-4 border rounded bg-light mb-5">
+        <h4 class="mb-3" id="preference-anchor">Find Your Perfect Dish Match</h4>
+      
+        
+        <div class="mb-3">
+          <label class="form-label">Diet</label>
+          <select class="form-select" name="diet">
+            <option value="">Any</option>
+            <option value="vegan">Vegan</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="gluten free">Gluten Free</option>
+            <option value="paleo">Paleo</option>
+            <option value="keto">Keto</option>
+            <option value="pescetarian">Pescetarian</option>
+          </select>
+        </div>
+      
+        
+        <div class="mb-3">
+          <label class="form-label">Intolerances</label>
+          <div class="row">
+            <div class="col-sm-6 col-md-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="intolerances" value="dairy" id="dairy">
+                <label class="form-check-label" for="dairy">Dairy</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="intolerances" value="egg" id="egg">
+                <label class="form-check-label" for="egg">Egg</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="intolerances" value="gluten" id="gluten">
+                <label class="form-check-label" for="gluten">Gluten</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="intolerances" value="peanut" id="peanut">
+                <label class="form-check-label" for="peanut">Peanut</label>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="intolerances" value="seafood" id="seafood">
+                <label class="form-check-label" for="seafood">Seafood</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="intolerances" value="sesame" id="sesame">
+                <label class="form-check-label" for="sesame">Sesame</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="intolerances" value="soy" id="soy">
+                <label class="form-check-label" for="soy">Soy</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="intolerances" value="sulfite" id="sulfite">
+                <label class="form-check-label" for="sulfite">Sulfite</label>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="intolerances" value="tree nut" id="treeNut">
+                <label class="form-check-label" for="treeNut">Tree Nut</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="intolerances" value="wheat" id="wheat">
+                <label class="form-check-label" for="wheat">Wheat</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        
+        <div class="mb-3">
+          <label class="form-label">Meal Type</label>
+          <select class="form-select" name="type">
+            <option value="">Any</option>
+            <option value="main course">Main Course</option>
+            <option value="dessert">Dessert</option>
+            <option value="appetizer">Appetizer</option>
+            <option value="snack">Snack</option>
+            <option value="salad">Salad</option>
+            <option value="breakfast">Breakfast</option>
+            <option value="drink">Drink</option>
+          </select>
+        </div>
+      
+        
+        <div class="mb-3">
+          <label class="form-label">Cuisine</label>
+          <select class="form-select" name="cuisine">
+            <option value="">Any</option>
+            <option value="italian">Italian</option>
+            <option value="japanese">Japanese</option>
+            <option value="mexican">Mexican</option>
+            <option value="thai">Thai</option>
+            <option value="indian">Indian</option>
+            <option value="mediterranean">Mediterranean</option>
+            <option value="chinese">Chinese</option>
+            <option value="french">French</option>
+          </select>
+        </div>
+      
+        <button type="submit" class="btn btn-primary w-100">Find Dish</button>
+      </form>
+      <div id="resultFilterDish" class="mt-4"></div>
+    </main>
+  
+    <footer class="mt-5"></footer>
+  
+    <template id="recipe-template">
+      <div class="card-size mb-3 p-3">
+        <h4 class="recipe-title card-title"></h4>
+        <img class="recipe-image card-img-top" />
+        <div class="card-body">
+          <p><strong>Calories:</strong> <span class="recipe-calories"></span></p>
+          <p><strong>Protein:</strong> <span class="recipe-protein"></span></p>
+          <p><strong>Fat:</strong> <span class="recipe-fat"></span></p>
+          <p><strong>Carbs:</strong> <span class="recipe-carbs"></span></p>
+          <p><strong>Ingredients:</strong></p>
+          <div class="recipe-ingredients"></div>
+          <button class="btn btn-sm btn-outline-primary toggle-instruction mt-2">Show recipe</button>
+          <div class="recipe-instructions mt-2"></div>
+        </div>
+      </div>
+    </template>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+<script type="module" src="project.js"></script>
+</body>
+</html>
